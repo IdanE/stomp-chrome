@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Websocket STOMP Client",
+  "description": "A Websocket Client using the STOMP sub-protocol",
+  "version": "0.3",
+
+  "browser_action": {
+    "title": "STOMP client",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "24": "assets/icon24.png",
+      "32": "assets/icon32.png"
+    }
+  },
+  "background": {
+      "scripts": ["background.js"]
+    },
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

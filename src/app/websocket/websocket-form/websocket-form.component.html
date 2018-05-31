@@ -1,0 +1,66 @@
+<h2>Connection Details</h2>
+<hr />
+<label>State: {{ stateString | async }}</label>
+<div class="row">
+	<div class="col-6">
+		<div class="form-group">
+			<label class="control-label">URL</label>
+			<input [disabled]="isConnected" [(ngModel)]="stompConfig.url" type="text" class="form-control">
+		</div>
+	</div>
+	<div class="col-6">
+		<label>Connection Headers</label>
+		<table class="table table-hover table-bordered table-sm">
+			<thead class="thead-dark">
+				<tr>
+					<th>Name</th>
+					<th>Value</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let connectionHeader of connectionHeaders;let i = index">
+					<td>
+						<input class='form-control' [(ngModel)]="connectionHeader.name" type="text">
+					</td>
+					<td>
+						<input class='form-control' [(ngModel)]="connectionHeader.value" type="text">
+					</td>
+					<td>
+						<button (click) = "deleteConnectionHeader(i)" class="btn btn-link">Delete</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<button class="btn btn-success" (click) = "addConnectionHeader()">Add</button>
+	</div>
+</div>
+<button (click)="connect()" [disabled]="isConnected" class="btn btn-primary">Connect</button>
+<button (click)="disconnect()" [disabled]="!isConnected" class="btn btn-danger">Disconnect</button>
+<h2>Actions</h2>
+<hr/>
+<div class="row">
+	<div class="col-6">
+		<div class="form-group">
+			<label>Subscribe</label>
+			<input [disabled]="!isConnected" type="text" placeholder="Topic name" class="form-control" [(ngModel)]="subscribeTopic">
+		</div>
+		<button [disabled]="!isConnected || subscribeTopic === ''" class="btn btn-primary" (click)="subscribe()">Subscribe</button>
+	</div>
+	<div class="col-6">
+		<label>Send to topic</label>
+		<div class="row">
+			<div class="col-6">
+				<div class="form-group">
+					<input [disabled]="!isConnected" type="text" placeholder="Topic" class="form-control" [(ngModel)]="sendTopic">
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="form-group">
+					<input [disabled]="!isConnected" type="text" placeholder="Message" class="form-control" [(ngModel)]="sendMessage">
+				</div>
+			</div>
+		</div>
+		<button [disabled]="!isConnected || sendTopic === '' || sendMessage === ''" class="btn btn-primary" (click)="send()">Send</button>
+	</div>
+</div>

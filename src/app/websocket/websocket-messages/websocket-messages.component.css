@@ -1,0 +1,23 @@
+
+
+.messages { 
+	height: 300px;
+	width: 100%;
+    margin: 5px 0;
+    padding: 0 5px;
+    overflow: auto;
+    border: 1px solid black;
+    background-color: #fff;
+    line-height: 150%;
+}
+
+.messages pre {
+    width: 100%;
+    margin-bottom: 0px;
+}
+pre.outbound {
+	color: #f63;
+}
+pre.inbound {
+	color: green;
+}

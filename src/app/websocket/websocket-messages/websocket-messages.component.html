@@ -1,0 +1,3 @@
+<div #messagesContainer class="messages">
+	<pre [ngClass]="{'inbound': message.type === messageType.Inbound, 'outbound': message.type === messageType.Outbound }" *ngFor="let message of messages">{{ message.data }}</pre>
+</div>
